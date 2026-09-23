@@ -1,0 +1,34 @@
+/* INCLUDE */
+#include "Mcal.h"
+#include "INIT/init.h"
+#include "PWM/App_Pwm.h"
+#include "Uart/App_Uart.h"
+#include "WDG/App_Wdg.h"
+#include "GPT/App_Gpt.h"
+
+
+/* MAIN */
+int main(void)
+{
+	/* All Use Peripherals Initialize */
+	ALL_COMPONENT_INIT();
+
+	/* UART RX Start for receive User Command */
+	if (App_Uart_Recv_Async() != E_OK)
+	{
+		for (;;) { /* RX start failed: inspect UART initialization. */ }
+	}
+
+    for(;;)	/* Main Loop */
+    {
+    	/* UART Rx and Btn(SW2) Input are handled by ISR */
+
+        App_Uart_RxProcess(); /* Uart Command Control Execution */
+        App_Pwm_Process();	/* Pwm Control by Btn(SW3) Input (Polling) */
+        App_Gpt_Send_Time_Uart(); /* Send Elapsed Time Since Boot */
+        App_Wdg_Refresh();	/* Wdg 43 Instance 0 Service */
+    }
+
+    return 0U;
+}
+
