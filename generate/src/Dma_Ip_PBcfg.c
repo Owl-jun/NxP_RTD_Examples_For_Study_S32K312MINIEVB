@@ -108,6 +108,137 @@ extern "C"
                                        GLOBAL FUNCTIONS
 ==================================================================================================*/
 
+#define MCL_START_SEC_CONFIG_DATA_UNSPECIFIED
+/* @violates @ref Mcl_Dma_h_REF_1 MISRA 2012 Required Directive 4.10, Precautions shall be taken in order to prevent the contents of a header file being included more than once. */
+#include "Mcl_MemMap.h"
+
+/* DMA Logic Instance Configuration */
+static const Dma_Ip_LogicInstanceConfigType LogicInstance0ConfigPB =
+{
+	{
+		/* uint32 logicInstId; */ DMA_LOGIC_INST_0,
+		/* uint8 hwVersId;     */ DMA_IP_HARDWARE_VERSION_3,
+		/* uint8 hwInst;       */ DMA_IP_HW_INST_0,
+	},
+	/* boolean EnDebug; */                 (boolean)TRUE,
+	/* boolean EnRoundRobin; */            (boolean)FALSE,
+	/* boolean EnHaltAfterError; */        (boolean)FALSE,
+	/* boolean EnChLinking; */             (boolean)FALSE,
+	/* boolean EnGlMasterIdReplication; */ (boolean)FALSE,
+};
+
+/* DMA Logic Instance Configuration Array */
+static const Dma_Ip_LogicInstanceConfigType * const Dma_Ip_paxLogicInstanceConfigArrayPB[1] =
+{
+		&LogicInstance0ConfigPB,
+};
+
+
+#define MCL_STOP_SEC_CONFIG_DATA_UNSPECIFIED
+/* @violates @ref Mcl_Dma_h_REF_1 MISRA 2012 Required Directive 4.10, Precautions shall be taken in order to prevent the contents of a header file being included more than once. */
+#include "Mcl_MemMap.h"
+
+
+#define MCL_START_SEC_CONFIG_DATA_UNSPECIFIED
+/* @violates @ref Mcl_Dma_h_REF_1 MISRA 2012 Required Directive 4.10, Precautions shall be taken in order to prevent the contents of a header file being included more than once. */
+#include "Mcl_MemMap.h"
+
+
+/* DMA Logic Channel Configurations */
+
+#define MCL_STOP_SEC_CONFIG_DATA_UNSPECIFIED
+/* @violates @ref Mcl_Dma_h_REF_1 MISRA 2012 Required Directive 4.10, Precautions shall be taken in order to prevent the contents of a header file being included more than once. */
+#include "Mcl_MemMap.h"
+
+
+#define MCL_START_SEC_VAR_CLEARED_UNSPECIFIED_NO_CACHEABLE
+/* @violates @ref Mcl_Dma_h_REF_1 MISRA 2012 Required Directive 4.10, Precautions shall be taken in order to prevent the contents of a header file being included more than once. */
+#include "Mcl_MemMap.h"
+
+
+#define MCL_STOP_SEC_VAR_CLEARED_UNSPECIFIED_NO_CACHEABLE
+/* @violates @ref Mcl_Dma_h_REF_1 MISRA 2012 Required Directive 4.10, Precautions shall be taken in order to prevent the contents of a header file being included more than once. */
+#include "Mcl_MemMap.h"
+
+#define MCL_START_SEC_VAR_INIT_UNSPECIFIED
+/* @violates @ref Mcl_Dma_h_REF_1 MISRA 2012 Required Directive 4.10, Precautions shall be taken in order to prevent the contents of a header file being included more than once. */
+#include "Mcl_MemMap.h"
+
+#define MCL_STOP_SEC_VAR_INIT_UNSPECIFIED
+/* @violates @ref Mcl_Dma_h_REF_1 MISRA 2012 Required Directive 4.10, Precautions shall be taken in order to prevent the contents of a header file being included more than once. */
+#include "Mcl_MemMap.h"
+
+#define MCL_START_SEC_CONFIG_DATA_UNSPECIFIED
+/* @violates @ref Mcl_Dma_h_REF_1 MISRA 2012 Required Directive 4.10, Precautions shall be taken in order to prevent the contents of a header file being included more than once. */
+#include "Mcl_MemMap.h"
+
+static const Dma_Ip_LogicChannelConfigType LogicChannel0ConfigPB = 
+{
+		{
+				/* uint32 LogicChId; */               DMA_LOGIC_CH_0,
+				/* uint8 HwVersId; */                 DMA_IP_HARDWARE_VERSION_3,
+				/* uint8 HwInst; */                   DMA_IP_HW_INST_0,
+				/* uint8 HwChId; */                   DMA_IP_HW_CH_0,
+				/* Dma_Ip_Callback IntCallback; */    ISR_DMA_CALLBACK,
+				/* Dma_Ip_Callback ErrIntCallback; */ NULL_PTR,
+		}, /* Dma_Ip_LogicChannelIdType */
+		NULL_PTR,
+		NULL_PTR,
+		NULL_PTR,
+};
+
+static const Dma_Ip_LogicChannelConfigType * const Dma_Ip_paxLogicChannelConfigArrayPB[1] =
+{
+		&LogicChannel0ConfigPB,
+};
+
+#define MCL_STOP_SEC_CONFIG_DATA_UNSPECIFIED
+/* @violates @ref Mcl_Dma_h_REF_1 MISRA 2012 Required Directive 4.10, Precautions shall be taken in order to prevent the contents of a header file being included more than once. */
+#include "Mcl_MemMap.h"
+
+#define MCL_START_SEC_VAR_CLEARED_UNSPECIFIED_NO_CACHEABLE
+/* @violates @ref Mcl_Dma_h_REF_1 MISRA 2012 Required Directive 4.10, Precautions shall be taken in order to prevent the contents of a header file being included more than once. */
+#include "Mcl_MemMap.h"
+
+/* DMA Hardware Channel 0 */
+static Dma_Ip_HwChannelStateType HwChannel0StatePB;
+
+#define MCL_STOP_SEC_VAR_CLEARED_UNSPECIFIED_NO_CACHEABLE
+/* @violates @ref Mcl_Dma_h_REF_1 MISRA 2012 Required Directive 4.10, Precautions shall be taken in order to prevent the contents of a header file being included more than once. */
+#include "Mcl_MemMap.h"
+
+#define MCL_START_SEC_VAR_INIT_UNSPECIFIED_NO_CACHEABLE
+/* @violates @ref Mcl_Dma_h_REF_1 MISRA 2012 Required Directive 4.10, Precautions shall be taken in order to prevent the contents of a header file being included more than once. */
+#include "Mcl_MemMap.h"
+
+/* DMA Hardware Channel State and DMA Logic Channel Configuration Array */
+static Dma_Ip_HwChannelStateType * Dma_Ip_paxHwChannelStateArrayPB[1] =
+{
+		&HwChannel0StatePB,
+};
+
+#define MCL_STOP_SEC_VAR_INIT_UNSPECIFIED_NO_CACHEABLE
+/* @violates @ref Mcl_Dma_h_REF_1 MISRA 2012 Required Directive 4.10, Precautions shall be taken in order to prevent the contents of a header file being included more than once. */
+#include "Mcl_MemMap.h"
+
+#define MCL_START_SEC_CONFIG_DATA_UNSPECIFIED
+/* @violates @ref Mcl_Dma_h_REF_1 MISRA 2012 Required Directive 4.10, Precautions shall be taken in order to prevent the contents of a header file being included more than once. */
+#include "Mcl_MemMap.h"
+
+/* DMA Initialization Structure */
+const Dma_Ip_InitType Dma_Ip_xDmaInitPB = 
+{
+		/* Dma_Ip_HwChannelStateType ** HwChStateArray */                            &Dma_Ip_paxHwChannelStateArrayPB[0U],         /* Static */
+		/* const Dma_Ip_LogicChannelConfigType * const LogicChConfigArray   */       &Dma_Ip_xLogicChannelResetConfig,           /* Static */
+		/* const Dma_Ip_LogicChannelConfigType * const * LogicChConfigArray */       &Dma_Ip_paxLogicChannelConfigArrayPB[0U],     /* Static */
+		/* const Dma_Ip_LogicInstanceConfigType * const LogicInstConfigArray   */    &Dma_Ip_xLogicInstanceResetConfig,          /* Static */
+		/* const Dma_Ip_LogicInstanceConfigType * const  * LogicInstConfigArray */   &Dma_Ip_paxLogicInstanceConfigArrayPB[0U],    /* Static */
+		/* const uint8 NumOfLogicChannel   */                                        1U,
+		/* const uint8 NumOfLogicInstance */                                         1U,
+};
+#define MCL_STOP_SEC_CONFIG_DATA_UNSPECIFIED
+/* @violates @ref Mcl_Dma_h_REF_1 MISRA 2012 Required Directive 4.10, Precautions shall be taken in order to prevent the contents of a header file being included more than once. */
+#include "Mcl_MemMap.h"
 #ifdef __cplusplus
 }
 #endif

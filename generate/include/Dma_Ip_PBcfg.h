@@ -77,6 +77,15 @@ extern "C"
 *                                    FUNCTION PROTOTYPES
 ==================================================================================================*/
 
+#define MCL_START_SEC_CODE
+/* @violates @ref Mcl_Dma_h_REF_1 MISRA 2012 Required Directive 4.10, Precautions shall be taken in order to prevent the contents of a header file being included more than once. */
+#include "Mcl_MemMap.h"
+
+void ISR_DMA_CALLBACK(void);
+
+#define MCL_STOP_SEC_CODE
+/* @violates @ref Mcl_Dma_h_REF_1 MISRA 2012 Required Directive 4.10, Precautions shall be taken in order to prevent the contents of a header file being included more than once. */
+#include "Mcl_MemMap.h"
 
 
 #ifdef __cplusplus

@@ -1,3 +1,10 @@
+/*
+ * main.c
+ *
+ *  Created on: 2026. 9. 17.
+ *      Author: David.Kang
+ */
+
 /* INCLUDE */
 #include "Mcal.h"
 #include "INIT/init.h"
@@ -23,10 +30,13 @@ int main(void)
     {
     	/* UART Rx and Btn(SW2) Input are handled by ISR */
 
-        App_Uart_RxProcess(); /* Uart Command Control Execution */
-        App_Pwm_Process();	/* Pwm Control by Btn(SW3) Input (Polling) */
-        App_Gpt_Send_Time_Uart(); /* Send Elapsed Time Since Boot */
-        App_Wdg_Refresh();	/* Wdg 43 Instance 0 Service */
+        App_Uart_RxProcess(); 		/* Uart Command Control Execution */
+        App_Pwm_Process();			/* Pwm Control by Btn(SW3) Input (Polling) */
+        App_Gpt_Send_Time_Uart(); 	/* Send Elapsed Time Since Boot */
+
+#if WATCHDOG_ENABLE
+        App_Wdg_Refresh();			/* Wdg 43 Instance 0 Service */
+#endif
     }
 
     return 0U;

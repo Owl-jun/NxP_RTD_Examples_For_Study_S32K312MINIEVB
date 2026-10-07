@@ -9,16 +9,17 @@
 
 #include "Dio.h"
 #include "Pwm.h"
-#include <stdio.h>
+
 #include "../Uart/App_Uart.h"
 
 #define DEBOUNCE_CNT 					(10000U)
 #define DUTY_CYCLE_100_PERCENT			(0x8000U)
 #define DUTY_CONVERT_LOGIC(u8BtnCnt)	(((DUTY_CYCLE_100_PERCENT * (u8BtnCnt * 10U))) / 100U)
 
-void App_Pwm_On_RedLed(void)
+void App_Pwm_On_RedLed(uint8_t cmd)
 {
-	Pwm_SetDutyCycle(PwmChannel_0, DUTY_CYCLE_100_PERCENT);
+	if (!cmd) { Pwm_SetDutyCycle(PwmChannel_0, DUTY_CYCLE_100_PERCENT); }
+	else { Pwm_SetDutyCycle(PwmChannel_0, 0U); }
 }
 
 void App_Pwm_Process(void)

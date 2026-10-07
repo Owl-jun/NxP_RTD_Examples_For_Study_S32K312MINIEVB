@@ -145,7 +145,7 @@ const Mcu_ConfigType Mcu_PreCompileConfig=
     (Mcu_RamSectionType)0U,
 
     /* Number of Power Modes configurations. */
-    (Mcu_ModeType)1U,
+    (Mcu_ModeType)2U,
 
 #if (MCU_INIT_CLOCK == STD_ON)
     /* Number of Clock Setting configurations. */

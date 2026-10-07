@@ -1,3 +1,10 @@
+/*
+ * App_Uart.c
+ *
+ *  Created on: 2026. 9. 21.
+ *      Author: David.Kang
+ */
+
 #include "App_Uart.h"
 
 #include "../PWM/App_Pwm.h"
@@ -10,7 +17,7 @@
 
 #define RX_BUFFER_SIZE 256U
 #define RX_PACKET_SIZE 8U
-
+#define RX_PACKET_CNT  2U
 typedef struct UART_PACKET
 {
 	char u8RxPacket[RX_PACKET_SIZE];
@@ -25,7 +32,7 @@ void Reset_Packet(UART_PACKET_t * pPacket)
 
 /* Single ISR producer, single main-loop consumer. Capacity: 255 bytes. */
 static UART_PACKET_t rxPacket = {{0xA5U,} , 0U};
-const char * u8Cmd = "950809";
+const char * u8Cmd[RX_PACKET_CNT] = {"950809" , "950808"};
 static uint8 rxByte;
 static volatile uint8 rxBuf[RX_BUFFER_SIZE];
 static volatile uint32 rxHead;
@@ -33,7 +40,9 @@ static volatile uint32 rxTail;
 static volatile uint32 rxDropped;
 static volatile uint32 rxErrors;
 static boolean rxStarted;
-static boolean rxPacketCompleted;
+
+static volatile uint8   rxPacketNum = 0xFFU;
+static volatile boolean rxPacketCompleted;
 
 
 
@@ -71,9 +80,18 @@ void App_Uart_RxProcess(void)
 	}
 	if (rxPacketCompleted)
 	{
-		App_Uart_Send("Collect Command Key, Turn On Red Led");
-		App_Pwm_On_RedLed();
+		if (rxPacketNum == 0U)
+		{
+			App_Uart_Send("Collect Command Key, Turn On Red Led");
+			App_Pwm_On_RedLed(rxPacketNum);
+		}
+		else if (rxPacketNum == 1U)
+		{
+			App_Uart_Send("Collect Command Key, Turn Off Red Led");
+			App_Pwm_On_RedLed(rxPacketNum);
+		}
 		Reset_Packet(&rxPacket);
+		rxPacketNum = 0xFFU;
 		rxPacketCompleted = FALSE;
 	}
 }
@@ -84,19 +102,32 @@ void App_Uart_Callback(const uint8 channel, const Uart_EventType event)
 	if (event == UART_EVENT_RX_FULL)
 	{
 		uint32 next = (rxHead + 1U) % RX_BUFFER_SIZE;
-		if (rxByte == u8Cmd[rxPacket.u8RxPtr])
-		{
-			rxPacket.u8RxPacket[rxPacket.u8RxPtr++] = rxByte;
-		}
-		else
-		{
-			/* Clear Rx Packet */
-			Reset_Packet(&rxPacket);
-		}
 
-		if ((strcmp(rxPacket.u8RxPacket,u8Cmd) == 0U))
+		/* Keep a completed packet until the main loop executes it. */
+		if (!rxPacketCompleted)
 		{
-			rxPacketCompleted = TRUE;
+			if (rxPacketNum == 0xFFU)
+			{
+				/* ASCII packet number: '0' + "950809", '1' + "950808". */
+				if (rxByte == '0' || rxByte == '1') { rxPacketNum = rxByte - '0'; }
+			}
+			else if ((rxPacket.u8RxPtr < (RX_PACKET_SIZE - 1U)) &&
+					 (rxByte == u8Cmd[rxPacketNum][rxPacket.u8RxPtr]))
+			{
+				rxPacket.u8RxPacket[rxPacket.u8RxPtr++] = rxByte;
+				rxPacket.u8RxPacket[rxPacket.u8RxPtr] = '\0';
+
+				if ((strcmp(rxPacket.u8RxPacket,u8Cmd[rxPacketNum]) == 0U))
+				{
+					rxPacketCompleted = TRUE;
+				}
+			}
+			else
+			{
+				/* Clear Rx Packet */
+				Reset_Packet(&rxPacket);
+				rxPacketNum = 0xFFU;
+			}
 		}
 
 		if (next != rxTail)

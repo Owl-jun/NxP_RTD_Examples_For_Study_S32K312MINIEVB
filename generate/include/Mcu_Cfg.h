@@ -392,7 +392,7 @@ extern "C"{
 /**
 * @brief            Maximum number of MCU Mode configurations.
 */
-#define MCU_MAX_MODECONFIGS   ((uint32)1U)
+#define MCU_MAX_MODECONFIGS   ((uint32)2U)
 
 /**
 * @brief            Maximum number of MCU Ram configurations.
@@ -565,6 +565,11 @@ extern "C"{
 #define McuModeSettingConf_0      ((Mcu_ModeType)0U)
 
 #define McuConf_McuModeSettingConf_McuModeSettingConf_0      ((Mcu_ModeType)0U)
+
+
+#define McuModeSettingConf_1      ((Mcu_ModeType)1U)
+
+#define McuConf_McuModeSettingConf_McuModeSettingConf_1      ((Mcu_ModeType)1U)
 
 
 /**

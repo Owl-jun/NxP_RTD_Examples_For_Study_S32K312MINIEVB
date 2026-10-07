@@ -1,3 +1,10 @@
+/*
+ * App_Uart.h
+ *
+ *  Created on: 2026. 9. 21.
+ *      Author: David.Kang
+ */
+
 #ifndef DRV_UART_H
 #define DRV_UART_H
 

@@ -113,6 +113,8 @@ PortContainer_0_BOARD_InitPeripherals:
   - {pin_num: '152', peripheral: eMIOS_1, signal: emios_1_ch_4_h, pin_signal: PTA14, direction: OUTPUT}
   - {pin_num: '145', peripheral: LPUART6, signal: lpuart6_rx, pin_signal: PTA15}
   - {pin_num: '143', peripheral: LPUART6, signal: lpuart6_tx, pin_signal: PTA16, direction: OUTPUT}
+  - {pin_num: '135', peripheral: ADC0, signal: adc0_s9, pin_signal: PTA1}
+  - {pin_num: '124', peripheral: WKPU, signal: 'wkpu, 0', pin_signal: PTA2}
  * BE CAREFUL MODIFYING THIS COMMENT - IT IS YAML SETTINGS FOR TOOLS ***********
  */
 /* clang-format on */

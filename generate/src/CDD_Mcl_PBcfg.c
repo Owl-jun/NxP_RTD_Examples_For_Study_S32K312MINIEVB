@@ -100,7 +100,7 @@ extern "C"
 
 const Mcl_ConfigType Mcl_Config =
 {
-    NULL_PTR,
+    &Dma_Ip_xDmaInitPB,
     NULL_PTR,
     NULL_PTR,
     &Mcl_EmiosConfig,
